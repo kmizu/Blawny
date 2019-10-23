@@ -310,9 +310,10 @@ Blawny's type inference is based on HM.  It means that type annotations
 is not required in many cases:
 
 ```
-function fold_left(list) = (z) => (f) => {
-  if(isEmpty(list)) z else fold_left(tail(list))(f(z, head(list)))(f)
-}
+function fold_left(list) 
+  return (z) => (f) => {
+    if(isEmpty(list)) z else fold_left(tail(list))(f(z, head(list)))(f)
+  }
 // The result of type inference: List<'a> => 'b => (('b, 'a) => 'b) => 'b
 ```
 
@@ -321,9 +322,8 @@ function fold_left(list) = (z) => (f) => {
 Blawny has simple object system based on row polymorphism.  For example,
 
 ```
-function add(o) = {
-  o.x + o.y
-}
+function add(o)
+  return o.x + o.y
 ```
 
 the type of above program is inferred:
