@@ -1,0 +1,21 @@
+class P {
+  x: Int
+  y: Int
+  z: Int
+}
+class Q {
+  x: Double
+  y: Double
+  z: Double
+}
+
+class T <'a, 'b> {
+  x: 'a
+  y: 'b
+}
+
+function add_xy(o)
+  return o.x + o.y
+
+assert(3 == add_xy(#P(1, 2, 3)))
+assert(3 == add_xy(#T(1, 2)))

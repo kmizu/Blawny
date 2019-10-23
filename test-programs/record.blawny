@@ -1,0 +1,73 @@
+class Person {
+  name: *
+  age: Int
+  profile: #Profile
+}
+
+class Profile {
+  description: *
+  hobby: *
+}
+
+class Stub {
+  p: #GPoint<Int, Int>
+}
+
+class X1 {
+  x2: #X2
+}
+
+class X2 {
+  g: #GPoint<Int, Int>
+}
+
+class S {
+  v: Int
+  to_string: (*) => *
+}
+
+class GPoint<'x, 'y> {
+  x: 'x
+  y: 'y
+}
+
+class Pair <'a, 'b> {
+  _1: 'a
+  _2: 'b
+}
+
+s = #S(100, (this) => {
+  "#{(this :> #S).v}"
+})
+
+assert("100" == s.to_string())
+
+stub = #Stub(#GPoint(3, 5))
+assertResult(3)(stub.p.x)
+assertResult(5)(stub.p.y)
+
+x1 = #X1(#X2(#GPoint(4, 6)))
+assertResult(4)(x1.x2.g.x)
+assertResult(6)(x1.x2.g.y)
+
+point = #Point(1000, 2000)
+assertResult(1000)(point.x)
+assertResult(2000)(point.y)
+
+person = #Person("Kota Mizushima", 33, #Profile("Software Engineer", "Programming, Running, and Video Games"))
+assertResult("Kota Mizushima")(person.name)
+assertResult(33)(person.age)
+assertResult("Software Engineer")(person.profile.description)
+assertResult("Programming, Running, and Video Games")(person.profile.hobby)
+
+pair1 = #Pair(1, 2)
+assertResult(1)(pair1._1)
+assertResult(2)(pair1._2)
+
+pair2 = #Pair(1.5, 2.5)
+assertResult(1.5)(pair2._1)
+assertResult(2.5)(pair2._2)
+
+pair3 = #Pair(true, 1)
+assertResult(true)(pair3._1)
+assertResult(1)(pair3._2)
