@@ -97,7 +97,7 @@ If you want to define recursive functions, anonymous function literal cannot be 
 Instead, you can use the notation for recursive functions:
 
 ```
-def fact(n)
+function fact(n)
   return if n < 2
   ( 
     1 
@@ -310,7 +310,7 @@ Blawny's type inference is based on HM.  It means that type annotations
 is not required in many cases:
 
 ```
-def fold_left(list) = (z) => (f) => {
+function fold_left(list) = (z) => (f) => {
   if(isEmpty(list)) z else fold_left(tail(list))(f(z, head(list)))(f)
 }
 // The result of type inference: List<'a> => 'b => (('b, 'a) => 'b) => 'b
@@ -321,7 +321,7 @@ def fold_left(list) = (z) => (f) => {
 Blawny has simple object system based on row polymorphism.  For example,
 
 ```
-def add(o) = {
+function add(o) = {
   o.x + o.y
 }
 ```
